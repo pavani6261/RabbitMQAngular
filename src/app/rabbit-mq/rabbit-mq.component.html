@@ -1,0 +1,45 @@
+<div>
+    <br>
+    <h3> RabbitMQ </h3>
+    <br>
+  </div>
+  
+  <div class="divclass">
+    <br>
+    click here <button class="btn btn-success" (click)="getpids()">PID</button> to get process Id of listener program
+    <br>
+    <br>
+    <div>
+      
+      <table class="table" >
+        <tr>
+          <th>Connection Name</th>
+          <th>Queue Name</th>
+          <th>Process Id</th>
+          <th>Listener Name</th>
+          <th>logs File</th>
+          <th> Actions</th>
+        </tr>
+        <tr *ngFor="let item of queue1">
+          <td>{{item.connectionName}}</td>
+          <!-- <td>{{item.programName}}</td> -->
+          <td>{{item.queueName}}</td>
+         
+            <td  >{{item.pid}}</td>
+            <td  >{{item.programName}}</td>
+            <td>{{item.logfileName}}</td>
+          
+          <td>
+            <button class="startbutton" (click)="startConsumerfile(item.programName)" *ngIf="item.actionsType ==='stop' && flag==false"[disabled]>
+               start
+            </button>
+            <button class="stopbutton" (click)="stopConsumerfile(item.pid)" *ngIf="item.actionsType ==='start'">
+              stop
+           </button>
+           <button class="btn btn btn-success" *ngIf="flag==true && item.pid==0" (click)="getpids()" >ProcessId</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  
+  </div>
